@@ -1,5 +1,7 @@
 package com.example.cadastro.models;
 
+// Para não ter q fazer todos os states no enum, código foi retirado de:
+// https://gist.github.com/edylle/d0d4337c71ccbbe30c35d754c650373a
 public enum States {
     ACRE("AC", "Acre"),
     ALAGOAS("AL", "Alagoas"),
@@ -35,6 +37,17 @@ public enum States {
     States(String value, String description) {
         this.value = value;
         this.description = description;
+    }
+
+    public static States getStateByDescription(String description) {
+        for (States state : values()
+        ) {
+            if (state.getDescription().equals(description)) {
+                return state;
+            }
+        }
+
+        throw new RuntimeException("State does not exists");
     }
 
     public String getValue() {
